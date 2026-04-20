@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media V Spolek | Ostrava Noir</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,500;0,700;1,400&family=Public+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    
+    <style type="text/tailwindcss">
+        @theme {
+            --color-surface: #F0EDE8;
+            --color-on-surface: #0D0D0D;
+            --color-primary-accent: #c9a25a;
+            --color-secondary-gray: #989898;
+            --color-surface-container: #E8E5E0;
+
+            --font-display: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+            --font-body: "Epilogue", ui-sans-serif, system-ui, sans-serif;
+            --font-label: "Space Grotesk", ui-monospace, SFMono-Regular, monospace;
+        }
+
+        @layer base {
+            body {
+                @apply bg-surface text-on-surface font-body selection:bg-primary-accent selection:text-white antialiased;
+            }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <!-- Header -->
+        <header class="fixed top-0 w-full h-16 z-50 bg-[#131313]/80 backdrop-blur-md border-b border-white/5">
+            <div class="flex justify-between items-center px-6 md:px-12 w-full h-full max-w-screen-2xl mx-auto">
+                <div class="font-label font-bold tracking-tighter text-[#F0EDE8] text-xl">
+                    MEDIA V SPOLEK
+                </div>
+                
+                <nav class="hidden md:flex items-center gap-10">
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent border-b border-primary-accent/50 pb-1">ARCHIVE</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">DISPATCHES</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ATHLETES</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ABOUT</a>
+                </nav>
+
+                <div class="flex items-center gap-4 text-primary-accent">
+                    <button class="hover:opacity-75 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section class="relative w-full h-screen overflow-hidden flex items-end pb-32">
+                <div class="absolute inset-0 z-0 bg-[#0D0D0D]">
+                    <img 
+                        class="w-full h-full object-cover opacity-50 contrast-[1.1] grayscale"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZNIOf8_fHaD6Y62pe7RrhOUVn9MWcMqgUhM81g1mFee4Bya-TOeW8RR8UCZdDr_L8PzBVVOm7w51cJv2KisKMajdkvxa9qAuRNWc6bigWSud8whbEg33FKgJETsQ_lzI_zmnccdshyWxz80kAOqp-PuMU-Ikx6u3Pe129Kj49Ts8OmKfA8CdE_1dQmCowNZ2lYnJ60unPltjAib53YHQ8VzRU0_iRvf6y_4cQ-WdmuWA9llH82vryWjXLt7UY0zyIrBOLDGwYI07p"
+                        alt="Monochrome photographer portrait"
+                        referrerpolicy="no-referrer"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/60 to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-12 w-full">
+                    <div class="max-w-4xl">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="w-10 h-[1px] bg-primary-accent"></div>
+                            <span class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent font-medium">
+                                01 / MANIFESTO
+                            </span>
+                        </div>
+                        
+                        <h1 class="font-display font-medium text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-on-surface mb-12">
+                            Zachycujeme okamžiky, které mění pohled na svět
+                        </h1>
+
+                        <div class="flex flex-wrap gap-10">
+                            <a href="#" class="group flex items-center gap-4 px-10 py-5 border border-primary-accent text-primary-accent font-label uppercase tracking-[0.15em] text-[0.7rem] hover:bg-primary-accent hover:text-white transition-all duration-500">
+                                PROZKOUMAT ARCHIV
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
+                            </a>
+                            <a href="#" class="inline-flex items-center px-2 py-5 text-on-surface font-label uppercase tracking-[0.15em] text-[0.7rem] relative after:absolute after:bottom-4 after:left-2 after:right-2 after:h-[1px] after:bg-on-surface/20 hover:after:bg-on-surface transition-all duration-500">
+                                KONTAKT
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manifesto Content -->
+            <section class="py-40 px-6 md:px-12 max-w-screen-2xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+                    <div class="lg:col-span-7 scroll-reveal">
+                        <p class="font-display italic text-3xl md:text-5xl leading-tight text-on-surface font-light">
+                            "Nehledáme dokonalost, hledáme pravdu. V každém stínu, v každém pohybu je příběh, který čeká na své vyprávění."
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-5 flex flex-col justify-center gap-16">
+                        <div class="border-t border-on-surface/10 pt-8 scroll-reveal">
+                            <h3 class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent mb-5">
+                                AUTENTICITA
+                            </h3>
+                            <p class="font-body text-secondary-gray leading-relaxed text-lg max-w-md">
+                                Dokumentární přístup bez kompromisů. Ukazujeme realitu v její syrové kráse.
+                            </p>
+                        </div>
+                        <div class="border-t border-on-surface/10 pt-8 scroll-reveal">
+                            <h3 class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent mb-5">
+                                TECHNIKA
+                            </h3>
+                            <p class="font-body text-secondary-gray leading-relaxed text-lg max-w-md">
+                                Kombinace tradičních postupů a nejmodernějších technologií pro maximální vizuální dopad.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Section -->
+            <section class="py-32 bg-surface-container/30">
+                <div class="px-6 md:px-12 max-w-screen-2xl mx-auto mb-20 flex flex-col md:flex-row justify-between items-end gap-10">
+                    <div class="scroll-reveal">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-10 h-[1px] bg-primary-accent"></div>
+                            <span class="font-label uppercase tracking-[0.15em] text-[0.65rem] text-primary-accent font-medium">
+                                02 / PORTFOLIO
+                            </span>
+                        </div>
+                        <h2 class="font-display text-4xl md:text-6xl text-on-surface font-medium">Vybrané práce</h2>
+                    </div>
+
+                    <div class="flex gap-8 font-label uppercase tracking-[0.15em] text-[0.65rem]">
+                        <button class="text-primary-accent border-b border-primary-accent pb-1">VŠE</button>
+                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">UMĚNÍ</button>
+                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">DOKUMENT</button>
+                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">SPORT</button>
+                    </div>
+                </div>
+
+                <div class="px-6 md:px-12 max-w-screen-2xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                        <!-- Ostrava Noir -->
+                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                            <img 
+                                class="w-full aspect-[3/4] object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1"
+                                alt="Ostrava Noir"
+                                referrerpolicy="no-referrer"
+                            >
+                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                <div>
+                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">01 / DOKUMENT</span>
+                                    <h3 class="font-display text-3xl text-on-surface font-light">Ostrava Noir</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Industriál -->
+                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                            <img 
+                                class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
+                                alt="Industriál"
+                                referrerpolicy="no-referrer"
+                            >
+                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                <div>
+                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">03 / UMĚNÍ</span>
+                                    <h3 class="font-display text-3xl text-on-surface font-light">Industriál</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HC Vítkovice -->
+                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                            <img 
+                                class="w-full aspect-[4/5] object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYV-m42A4qArNHaWbqFZoGDlgL-RzreVUj_cvtv61qksidLOYzKRrp2pWObFxztWn4cXf3rNWCY3udWEfphRYJKrNJ4bzKFdvKZx2fgRnH187eWjsuytVkttRO-R28Z7Tf3FkNFCpwYBpdf0LV2gx0nYDOKDOwz3IWkeeWCmcscK5QnE2rk9YPN9o-kU9tMvdyvX5-VNoUnwy5E21ib0Qq3zR9aB_CEh3FA9_MK_5AT-FJgOPYI2QoB2V196hYB0JQe1lLvATOIJvB"
+                                alt="HC Vítkovice"
+                                referrerpolicy="no-referrer"
+                            >
+                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                <div>
+                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">02 / SPORT</span>
+                                    <h3 class="font-display text-3xl text-on-surface font-light">HC Vítkovice</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technika -->
+                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                            <img 
+                                class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBENnR82sjVkLZdgxfues8nqP6c1iFPmUUwHpHj7MjGjDhUSpBxZvF2frEEA1yUSLN6p5CJd7sYWQ9zS1A5KKSwTweaNrqL6Vl15uBymqlYgHeDdnEs0oVfVX_UJ6FJkDGGiHdh20E2fd7XHkyuVuSM8So7INz6EaJ4BLT41MUauVLdDpX424X3xfcZnCBwMrDQPOakpstcKVN7vA_OTcuK7GnlmiLMPlJFCQtJLwXWNkxrfHur6oYcmPhrU0fzwgLYxv1O04EF_iCQ"
+                                alt="Technika"
+                                referrerpolicy="no-referrer"
+                            >
+                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                <div>
+                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">04 / ATELIÉR</span>
+                                    <h3 class="font-display text-3xl text-on-surface font-light">Technika</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-[#0D0D0D] text-[#F0EDE8] pt-32 pb-16">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-24 border-b border-white/5 pb-20">
+                <div class="flex flex-col justify-between">
+                    <div class="font-display italic text-3xl font-light">MEDIA V SPOLEK</div>
+                </div>
+
+                <nav class="flex flex-col gap-6">
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">PRIVACY</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">TERMS</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">CONTACT</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent transition-all duration-300">ARCHIVE</a>
+                </nav>
+
+                <div class="flex flex-col justify-end">
+                    <p class="font-label text-[0.6rem] text-white/20 tracking-widest leading-loose">
+                        © 2024 MEDIA V / DOCUMENTARY PHOTOGRAPHY UNIT<br>
+                        REGISTERED IN OSTRAVA, CZECH REPUBLIC
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scroll Reveal Logic -->
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
