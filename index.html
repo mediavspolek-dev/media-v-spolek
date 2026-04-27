@@ -34,13 +34,23 @@
 
         .scroll-reveal {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            transform: translateY(30px);
+            filter: blur(8px);
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         .scroll-reveal.visible {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .portfolio-image {
+            @apply transition-all duration-700 ease-out;
+        }
+
+        .portfolio-image:hover {
+            @apply scale-105 grayscale-0;
         }
     </style>
 </head>
@@ -48,22 +58,31 @@
     <div id="root">
         <!-- Header -->
         <header class="fixed top-0 w-full h-16 z-50 bg-[#131313]/80 backdrop-blur-md border-b border-white/5">
-            <div class="flex justify-between items-center px-6 md:px-12 w-full h-full max-w-screen-2xl mx-auto">
+            <div class="flex justify-between items-center px-8 md:px-16 lg:px-20 w-full h-full max-w-screen-2xl mx-auto">
                 <div class="font-label font-bold tracking-tighter text-[#F0EDE8] text-xl">
                     MEDIA V SPOLEK
                 </div>
                 
                 <nav class="hidden md:flex items-center gap-10">
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent border-b border-primary-accent/50 pb-1">ARCHIVE</a>
+                    <a href="#" class="font-label uppercase tracking-[0.28em] text-[0.62rem] text-primary-accent border-b border-primary-accent/40 pb-1.5 transition-all duration-500">ARCHIVE</a>
                     <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">DISPATCHES</a>
                     <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ATHLETES</a>
                     <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ABOUT</a>
                 </nav>
 
-                <div class="flex items-center gap-4 text-primary-accent">
-                    <button class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m14.31 8 5.74 9.94"/><path d="M9.69 8h11.48"/><path d="m7.38 12 5.74-9.94"/><path d="M9.69 16 3.95 6.06"/><path d="M14.31 16H2.83"/><path d="m16.62 12-5.74 9.94"/></svg>
-                    </button>
+                <div class="flex items-center gap-5 text-primary-accent">
+                    <a href="https://www.instagram.com/photo_mediav" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/company/media-v-spolek/" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="#" class="hover:opacity-75 transition-opacity duration-300 opacity-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    </a>
+                    <a href="#" class="hover:opacity-75 transition-opacity duration-300 opacity-40">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </a>
                 </div>
             </div>
         </header>
@@ -82,21 +101,21 @@
                 </div>
 
                 <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-12 w-full">
-                    <div class="max-w-4xl">
-                        <div class="flex items-center gap-4 mb-8">
-                            <div class="w-10 h-[1px] bg-primary-accent"></div>
-                            <span class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent font-medium">
+                    <div class="max-w-5xl">
+                        <div class="flex items-center gap-6 mb-10">
+                            <div class="w-12 h-[1px] bg-primary-accent/60"></div>
+                            <span class="font-label uppercase tracking-[0.3em] text-[0.6rem] text-primary-accent font-medium">
                                 01 / MANIFESTO
                             </span>
                         </div>
                         
-                        <h1 class="font-display font-medium text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight text-on-surface mb-12">
+                        <h1 class="font-display font-medium text-5xl md:text-7xl lg:text-8xl leading-[0.98] tracking-tight text-on-surface mb-14 drop-shadow-sm text-justify">
                             Zachycujeme okamžiky, které mění pohled na svět
                         </h1>
 
                         <div class="flex flex-wrap gap-10">
                             <a href="#" class="group flex items-center gap-4 px-10 py-5 border border-primary-accent text-primary-accent font-label uppercase tracking-[0.15em] text-[0.7rem] hover:bg-primary-accent hover:text-white transition-all duration-500">
-                                PROZKOUMAT ARCHIV
+                                AKTUALITY
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="m9 18 6-6-6-6"/></svg>
                             </a>
                             <a href="#" class="inline-flex items-center px-2 py-5 text-on-surface font-label uppercase tracking-[0.15em] text-[0.7rem] relative after:absolute after:bottom-4 after:left-2 after:right-2 after:h-[1px] after:bg-on-surface/20 hover:after:bg-on-surface transition-all duration-500">
@@ -111,26 +130,44 @@
             <section class="py-40 px-6 md:px-12 max-w-screen-2xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
                     <div class="lg:col-span-7 scroll-reveal">
-                        <p class="font-display italic text-3xl md:text-5xl leading-tight text-on-surface font-light">
-                            "Nehledáme dokonalost, hledáme pravdu. V každém stínu, v každém pohybu je příběh, který čeká na své vyprávění."
+                        <p class="font-display italic text-3xl md:text-5xl leading-tight text-on-surface font-light text-justify">
+                            "Jsme nezisková organizace, která se věnuje rozvoji fotografického umění a dokumentaci společenského dění v Ostravském regionu. Naším cílem je podporovat kreativitu, aktivní seberealizaci občanů a uchovávat vizuální paměť našeho regionu."
                         </p>
                     </div>
 
                     <div class="lg:col-span-5 flex flex-col justify-center gap-16">
                         <div class="border-t border-on-surface/10 pt-8 scroll-reveal">
                             <h3 class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent mb-5">
-                                AUTENTICITA
+                                POSLÁNÍ
                             </h3>
                             <p class="font-body text-secondary-gray leading-relaxed text-lg max-w-md">
-                                Dokumentární přístup bez kompromisů. Ukazujeme realitu v její syrové kráse.
+                                Podpora aktivní seberealizace občanů prostřednictvím výtvarné a dokumentární fotografie.
+
+                                Tvorba a realizace projektů pro všechny věkové skupiny, které obohacují kulturně-společenské prostředí místního společenství.
+
+                                Zachycení a uchování kulturně-historického dědictví regionu prostřednictvím fotografické dokumentace.
+
+                                Poskytování výchovné, vzdělávací a osvětové činnosti v oblasti fotografie pro děti, mládež i dospělé.
+
+                                Provozování fotoateliéru k podpoře fotografických aktivit.
+
+                                Foto workshopy
+
+                                Vzdělávací přednášky
+
+                                Foto klubová setkání
+
+                                Pronájem profesionálního ateliéru
+
+                                Fotokroužek
                             </p>
                         </div>
                         <div class="border-t border-on-surface/10 pt-8 scroll-reveal">
                             <h3 class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent mb-5">
-                                TECHNIKA
+                                SPECIALIZACE
                             </h3>
                             <p class="font-body text-secondary-gray leading-relaxed text-lg max-w-md">
-                                Kombinace tradičních postupů a nejmodernějších technologií pro maximální vizuální dopad.
+                                Reportážní fotografie - sportovní reportáž
                             </p>
                         </div>
                     </div>
@@ -153,74 +190,120 @@
                     <div class="flex gap-8 font-label uppercase tracking-[0.15em] text-[0.65rem]">
                         <button class="text-primary-accent border-b border-primary-accent pb-1">VŠE</button>
                         <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">UMĚNÍ</button>
-                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">DOKUMENT</button>
-                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">SPORT</button>
+                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">REPORTÁŽ</button>
+                        <button class="text-on-surface/40 hover:text-on-surface transition-colors duration-300">FOTOKLUB</button>
                     </div>
                 </div>
 
                 <div class="px-6 md:px-12 max-w-screen-2xl mx-auto">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-16">
                         <!-- Ostrava Noir -->
-                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
-                            <img 
-                                class="w-full aspect-[3/4] object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1"
-                                alt="Ostrava Noir"
-                                referrerpolicy="no-referrer"
-                            >
-                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
-                                <div>
-                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">01 / DOKUMENT</span>
-                                    <h3 class="font-display text-3xl text-on-surface font-light">Ostrava Noir</h3>
+                        <div class="break-inside-avoid">
+                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                                <img 
+                                    class="w-full aspect-[3/4] object-cover cursor-pointer portfolio-image filter grayscale"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1"
+                                    alt="Ostrava Noir"
+                                    referrerpolicy="no-referrer"
+                                >
+                                <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                    <div>
+                                        <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">01 / REPORTÁŽ</span>
+                                        <h3 class="font-display text-3xl text-on-surface font-light">Ostrava Noir</h3>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="mt-6 pl-2 scroll-reveal" >
+                                <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.2em] block mb-2">01 / REPORTÁŽ</span>
+                                <h4 class="font-display text-xl text-on-surface font-medium">Ostrava Noir</h4>
                             </div>
                         </div>
 
                         <!-- Industriál -->
-                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
-                            <img 
-                                class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
-                                alt="Industriál"
-                                referrerpolicy="no-referrer"
-                            >
-                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
-                                <div>
-                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">03 / UMĚNÍ</span>
-                                    <h3 class="font-display text-3xl text-on-surface font-light">Industriál</h3>
+                        <div class="break-inside-avoid">
+                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                                <img 
+                                    class="w-full aspect-square object-cover cursor-pointer portfolio-image filter grayscale"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
+                                    alt="Industriál"
+                                    referrerpolicy="no-referrer"
+                                >
+                                <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                    <div>
+                                        <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">03 / UMĚNÍ</span>
+                                        <h3 class="font-display text-3xl text-on-surface font-light">Industriál</h3>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="mt-6 pl-2 scroll-reveal">
+                                <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.2em] block mb-2">03 / UMĚNÍ</span>
+                                <h4 class="font-display text-xl text-on-surface font-medium">Industriál</h4>
                             </div>
                         </div>
 
                         <!-- HC Vítkovice -->
-                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
-                            <img 
-                                class="w-full aspect-[4/5] object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYV-m42A4qArNHaWbqFZoGDlgL-RzreVUj_cvtv61qksidLOYzKRrp2pWObFxztWn4cXf3rNWCY3udWEfphRYJKrNJ4bzKFdvKZx2fgRnH187eWjsuytVkttRO-R28Z7Tf3FkNFCpwYBpdf0LV2gx0nYDOKDOwz3IWkeeWCmcscK5QnE2rk9YPN9o-kU9tMvdyvX5-VNoUnwy5E21ib0Qq3zR9aB_CEh3FA9_MK_5AT-FJgOPYI2QoB2V196hYB0JQe1lLvATOIJvB"
-                                alt="HC Vítkovice"
-                                referrerpolicy="no-referrer"
-                            >
-                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
-                                <div>
-                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">02 / SPORT</span>
-                                    <h3 class="font-display text-3xl text-on-surface font-light">HC Vítkovice</h3>
+                        <div class="break-inside-avoid">
+                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal" data-slideshow='["https://lh3.googleusercontent.com/pw/AP1GczPFP4sWnTGwPj4pOVcFNAqHriY111U7Gs2qM5ykAppuBGWuIuwBEpk5iKtYpbB-TVk7H9PsRbcjgqu3CZQd1oqPWVtGkbwZEQa0Sxjy7HgApC29UrQ=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczNibrJDKSh2RGePHFIEGs1qQ3pD1rP36Tq7-Ufrwsxk8GbdzHZtNYAQvarkWjhundXcJRZIhgR0joCh1SwKwmrLNeLLePWgftD4ANG8Ycjjd7Bq2Hc=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczNJQlKmscCVJXD9A1iM512A4EmrKu9unNyqDPZoovyKtO4EUjbyfcVjyBGFO4MuK2CcOSKU-WFraAKyG1cumix4WJG0u7wJ1kvZvSP6RmMcObcG39E=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOf3lgeUC6A-hzSTttE_UKBc8q5ia8D0hWMnuhknINyzwW7QS0w6LWq-7uEDXoaAVSr9zrNXFLB-kOSh4JZOunW-481kqeJgcne3JwW1kDpaR6H46I=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczPqds_3CxabIuhEX-sFqCyl19fn5tYU4rxUnMOQtHfrJRv9vLLa-lCYPHMn77ilOZKR2tnI77mOaGvc0maqzHJmLHb2GwMz4DyzXwJihEkIoXscEgQ=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczPwHNGxzXsxNEf2eSNN_bwCN7_w-LZj0DWwqErHsQqaCibZwAUNc8GQ8s384_y3sW60LwvdK4v_A3St-MAjTla0LzJmg4AfkNkEdWLcNC-yeVLblVw=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOWlSTOVB_60GUogy6GQ0xEFWBHAubVLuMPGVwAHOSPkySpDmPW_Cwr1l5SXSwpZZU7tKG4ZKwM7E7rixH6_3Z4VzcxUcJsHef1CfkNR23RXcf32Ow=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczMZnVMjG_qG7m7y4-llyRQPOh8Qeny0HGtqd24cXyYmzPKH2bosKVNJ2Mea23IWkD-DJgcT-Mq2yNMXabkQsQ_qavhpms0xSwvZiUvHwPV9FlU49sc=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczMFXp999f0pJfJ32G9lCoUvR5nRGvEZ9Y2wWviYbzZiXoBDWAEzhLoc1iyWmsGC-T1d91ATfAcGZ2_4q1cVu0zGey88KEzzop0XzRCJA92Hs58B00E=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczPJmu9OkhK5Fuh4A6pAkId76iK995NWJh8FfAgofJycrRYkMlEV_4qdmhOtsUcv4BUyR5M6G2OdHK15aBm-7nghEhJLndshet34XZ5TUa5qEVefsaQ=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczMVz1IEqYEISvdqaTKIZZoAlDLH6UMuNan2aoVftp1c85lozIEY7vsWKvF7L7L8pc4yc1JUMgbCAgmVpnNgRvIzk2_fNutqoVHhcKSCUSstpneoTjc=w1920-h1080"]'>
+                                <img 
+                                    class="w-full aspect-video object-cover cursor-pointer portfolio-image grayscale"
+                                    src="https://lh3.googleusercontent.com/pw/AP1GczPFP4sWnTGwPj4pOVcFNAqHriY111U7Gs2qM5ykAppuBGWuIuwBEpk5iKtYpbB-TVk7H9PsRbcjgqu3CZQd1oqPWVtGkbwZEQa0Sxjy7HgApC29UrQ=w1920-h1080"
+                                    alt="Hokej"
+                                    referrerpolicy="no-referrer"
+                                >
+                                <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                    <div>
+                                        <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">02 / SPORTOVNÍ REPORTÁŽ</span>
+                                        <h3 class="font-display text-3xl text-on-surface font-light">Extraliga ledního hokeje</h3>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="mt-6 pl-2 scroll-reveal">
+                                <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.2em] block mb-2">02 / SPORTOVNÍ REPORTÁŽ</span>
+                                <h4 class="font-display text-xl text-on-surface font-medium">Extraliga ledního hokeje</h4>
                             </div>
                         </div>
 
                         <!-- Technika -->
-                        <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
-                            <img 
-                                class="w-full aspect-square object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter grayscale hover:grayscale-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBENnR82sjVkLZdgxfues8nqP6c1iFPmUUwHpHj7MjGjDhUSpBxZvF2frEEA1yUSLN6p5CJd7sYWQ9zS1A5KKSwTweaNrqL6Vl15uBymqlYgHeDdnEs0oVfVX_UJ6FJkDGGiHdh20E2fd7XHkyuVuSM8So7INz6EaJ4BLT41MUauVLdDpX424X3xfcZnCBwMrDQPOakpstcKVN7vA_OTcuK7GnlmiLMPlJFCQtJLwXWNkxrfHur6oYcmPhrU0fzwgLYxv1O04EF_iCQ"
-                                alt="Technika"
-                                referrerpolicy="no-referrer"
-                            >
-                            <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
-                                <div>
-                                    <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">04 / ATELIÉR</span>
-                                    <h3 class="font-display text-3xl text-on-surface font-light">Technika</h3>
+                        <div class="break-inside-avoid">
+                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal">
+                                <img 
+                                    class="w-full aspect-square object-cover cursor-pointer portfolio-image filter grayscale"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBENnR82sjVkLZdgxfues8nqP6c1iFPmUUwHpHj7MjGjDhUSpBxZvF2frEEA1yUSLN6p5CJd7sYWQ9zS1A5KKSwTweaNrqL6Vl15uBymqlYgHeDdnEs0oVfVX_UJ6FJkDGGiHdh20E2fd7XHkyuVuSM8So7INz6EaJ4BLT41MUauVLdDpX424X3xfcZnCBwMrDQPOakpstcKVN7vA_OTcuK7GnlmiLMPlJFCQtJLwXWNkxrfHur6oYcmPhrU0fzwgLYxv1O04EF_iCQ"
+                                    alt="Technika"
+                                    referrerpolicy="no-referrer"
+                                >
+                                <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                    <div>
+                                        <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">04 / SPORTOVNÍ REPORTÁŽ</span>
+                                        <h3 class="font-display text-3xl text-on-surface font-light">Atletika</h3>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="mt-6 pl-2 scroll-reveal">
+                                <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.2em] block mb-2">04 / SPORTOVNÍ REPORTÁŽ</span>
+                                <h4 class="font-display text-xl text-on-surface font-medium">Atletika</h4>
+                            </div>
+                        </div>
+
+                        <!-- Fotoklub -->
+                        <div class="break-inside-avoid">
+                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal" data-slideshow='["https://lh3.googleusercontent.com/pw/AP1GczMa-5OETZcWoJDqggvchv4tYZUVb-y8zSNvdpDFXeFLRp9UPPPHhQfMiYC1WtbYCSLZnPfCJrOJSsHGjqCt4ZXcG1lOwbAkeELO17SfhP-Iji-cRD8=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOlmKt1VvGKZ35D8lzZmkF3ZrdlmHjvZRcK9wMdF9uJVzsl1Z9bhdDhi8Eu6_P_WphiRH0nfKSLCVHO0jJ44_XTZqWbqQh55CDOVUeJifIFv4XmCYI=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczM1hLWleDder0rl8yiVGcZg6-ivrrbIUV27mgtIjG1QrTZaWdAN6WusNpS4xtPWwjVQcaIDjYt67dRl7AZ-q6KOfsY9FqL3DKcvevvpIRp1arfJ4as=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczNIGxYhj8_WJfrsfpyWTTQfZ0EkKyXWCLeu5SYWatInoM6ljBLKyUjOK8t8qkhKEARMkzXE5MWTiSztHtF-xkDTrUMP1V-CRPrIUwis-CIowfRXV7I=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczMgEtYLEmH6XPgbAsw3NaJsLedlrMh_p_W7zE1TjL17oJ17H8BVzyZlDXLJmbTnPQdWine6mjct3S-ksiqv_azOIA84v5FZ6VVHwLWkRoU-GGBmYAo=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczPhA7XzjYvqh-K5ZPCSgvLYxwDjT5FK656Jq92pKN_MiOCnImTU9gFoLNcAMnThMqQTm_ovQsFrMDjsrMAGvCsrEiLWfC-oF2Aqv0y-MONrCSMG1N0=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczMVkJg3co216tpP4S0UDmmrjb2Qhc6WJXB0RqNR6r71UB72r-15Kj_VkC9wncdRJ0b_yoLg8MTepZCMV2qJCZMXGWoC3-2QCHIgYcQKH-RQWg7ZYw=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOYkii4VW4VsZMo58Wag0TFF6kh9Q2SfpGFil7fYPSy3LD5tOCDX1ongjJBZsGnxvMhTZyD0W4xWspHXcde1kOG6hZqfuzt_V7u-a0Wvny4kelRcA=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczN8hMqD2uKujpWETt1pX95BKFLybGICodgoAYnfUC1BTG3u-HIvZii8P9ux1Nk5PN1bg8OnlitMpZuAKyBa1BzbBcMVyB3qmtoqKLKM_PQ_UQSYjA=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczP3w2I5AmoBP8olK2yFqVAT1WRWR9WG8TBjZPlKPFcRBGby-oDk_pAPXbnfZUSOiUUQmkWEwbE518Du5jvSNkSTJU3uj7Lfb7Y2cBjM-n3K2xFLCg=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczO6hen2e4Am49dEiNkUC9MzCGU59YeL_iN-vnJ4UxPMFKxp_L3rKPBoVdYlyC9bY5ktWDNXM51Q439onP5986sqcn6rpq2OE5wRDLSls53qngEYjw=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOGV8_Qx18wIh7G7JCwVRyaxb9dZIkhBnNBjXRDWFSr2mQ5t3jBONa47di4JZ_MIfxcrtF58NSKgT8JYzOFQOgnHl8OengqpbqeRnV6hU1LtcLLig=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczON1wqK3qeuDif4tv07EBrjldTazHI4Ux9Mp45WJPrEu-sUMN6gCmMZXwxXxERCA4VdH0MkI8-xmzXMjWR9v0RHypLxq4lcsYp5Edl-iqKROGJCWg=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczNHjnzOdCMOdYIhgkKx0K2LZU_ll0whwxMbb0PRVu-vwNovT45IrZxZiNm22C_gUsURusfEuorrzeiPQuWV1YyJUJNrvRYwHMrIR7bwvkSay8J9Lw=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczNW0l1mTfw98Li_wJ72UJjdTRcXq5qfBjC4EEcSJEfQEX_cKlJWOCmD-Y2bf6DC2JWNJeBEl7t-1lPyGB__0NgQusFKS1dYhQPkBded7SM0_AprNQ=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczONebigfV8Zo3FxdKoIYKQIGy5H_ZJunNgy4tm_fMxdV61aeWWScFTNy8B2YIt7gi2onXkwzvqUFTNCiZhry4BczVJBneU3lnOEUOHw-j8dIXFs1os=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczP7T2u9ffjrvqgEW5aQNcpGxUGw5oHMyqul03T7M2rHVZYxkyRSX0la8LvwpOObS4thSH6rtxTvbeoWT8OqydkkPLns4M0ecdmjpFb8-DtUDa45BwU=w1920-h1080","https://lh3.googleusercontent.com/pw/AP1GczOXZPwwTzkFnJbGactcprHVLTnQjeYLD9hcqDbnHAN55oTzLZGsNvykAdqi1fd4YyHJz6jUcj_Hs_nr1WwZ8fDjPOcqPpyf7sM3HEMLeeoG_BUQXWE=w1920-h1080"]'>
+                                <img 
+                                    class="w-full aspect-video object-cover cursor-pointer portfolio-image filter grayscale"
+                                    src="https://lh3.googleusercontent.com/pw/AP1GczMa-5OETZcWoJDqggvchv4tYZUVb-y8zSNvdpDFXeFLRp9UPPPHhQfMiYC1WtbYCSLZnPfCJrOJSsHGjqCt4ZXcG1lOwbAkeELO17SfhP-Iji-cRD8=w1920-h1080"
+                                    alt="Fotoklub"
+                                    referrerpolicy="no-referrer"
+                                >
+                                <div class="absolute inset-0 bg-surface/90 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center p-12 text-center pointer-events-none">
+                                    <div>
+                                        <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.3em] block mb-3">05 / FOTOKLUB</span>
+                                        <h3 class="font-display text-3xl text-on-surface font-light">Fotoklub</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-6 pl-2 scroll-reveal">
+                                <span class="font-label text-primary-accent text-[0.6rem] tracking-[0.2em] block mb-2">05 / FOTOKLUB</span>
+                                <h4 class="font-display text-xl text-on-surface font-medium">Fotoklub</h4>
                             </div>
                         </div>
                     </div>
@@ -244,16 +327,17 @@
 
                 <div class="flex flex-col justify-end">
                     <p class="font-label text-[0.6rem] text-white/20 tracking-widest leading-loose">
-                        © 2024 MEDIA V / DOCUMENTARY PHOTOGRAPHY UNIT<br>
-                        REGISTERED IN OSTRAVA, CZECH REPUBLIC
+                        © 2024 MEDIA V SPOLEK / DOCUMENTARY AND ART PHOTOGRAPHY UNIT<br>
+                        OSTRAVA, CZECH REPUBLIC
                     </p>
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- Scroll Reveal Logic -->
+    <!-- Scroll Reveal & Slideshow Logic -->
     <script>
+        // Scroll Reveal
         const observerOptions = {
             threshold: 0.1
         };
@@ -267,6 +351,39 @@
         }, observerOptions);
 
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Slideshow Logic
+        document.querySelectorAll('[data-slideshow]').forEach(container => {
+            const images = JSON.parse(container.getAttribute('data-slideshow'));
+            const img = container.querySelector('img');
+            let currentIndex = 0;
+            let isGrayscale = true;
+
+            if (img && images.length > 1) {
+                setInterval(() => {
+                    let nextIndex = Math.floor(Math.random() * images.length);
+                    while (nextIndex === currentIndex && images.length > 1) {
+                        nextIndex = Math.floor(Math.random() * images.length);
+                    }
+                    currentIndex = nextIndex;
+                    isGrayscale = !isGrayscale;
+                    
+                    // Fade effect
+                    img.style.opacity = '0';
+                    setTimeout(() => {
+                        img.src = images[currentIndex];
+                        img.onload = () => {
+                            img.style.opacity = '1';
+                            if (isGrayscale) {
+                                img.classList.add('grayscale');
+                            } else {
+                                img.classList.remove('grayscale');
+                            }
+                        };
+                    }, 500); 
+                }, 5000);
+            }
+        });
     </script>
 </body>
 </html>
