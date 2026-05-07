@@ -29,84 +29,108 @@
 
     <div id="root">
         <!-- Header -->
-        <header class="fixed top-0 w-full h-16 z-50 bg-[#131313]/80 backdrop-blur-md border-b border-white/5">
+        <header class="fixed top-0 w-full h-16 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
             <div class="flex justify-between items-center px-6 md:px-16 lg:px-20 w-full h-full max-w-screen-2xl mx-auto">
-                <a href="index.html" class="font-label font-bold tracking-tighter text-[#F0EDE8] text-lg sm:text-xl shrink-0 hover:opacity-80 transition-opacity">
+                <a href="index.html" class="font-label font-bold tracking-tighter text-white text-lg sm:text-xl shrink-0 hover:opacity-80 transition-opacity">
                     MEDIA V SPOLEK
                 </a>
                 
                 <nav class="hidden lg:flex items-center gap-10">
-                    <a href="onas.html" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent border-b border-primary-accent/40 pb-1">O NÁS</a>
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">DISPATCHES</a>
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ATHLETES</a>
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">ABOUT</a>
-                    <a href="kontakt.html" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/60 hover:text-white transition-colors duration-500">KONTAKT</a>
+                    <a href="onas.html" class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-primary border-b border-primary pb-1">O NÁS</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-white/70 hover:text-white transition-colors duration-500">DISPATCHES</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-white/70 hover:text-white transition-colors duration-500">ATHLETES</a>
+                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-white/70 hover:text-white transition-colors duration-500">ABOUT</a>
+                    <a href="kontakt.html" class="font-label uppercase tracking-[0.2em] text-[0.7rem] text-white/70 hover:text-white transition-colors duration-500">KONTAKT</a>
                 </nav>
 
-                <div class="flex items-center gap-5 text-primary-accent">
-                    <a href="https://www.instagram.com/photo_mediav" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                <div class="flex items-center gap-5 text-primary">
+                    <a href="https://www.instagram.com/photo_mediav" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/company/media-v-spolek/" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    <a href="https://www.linkedin.com/company/media-v-spolek/" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
                     </a>
-                    <a href="https://www.facebook.com/profile.php?id=61566503103614" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                    <a href="https://www.facebook.com/profile.php?id=61566503103614" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
                     </a>
-                    <a href="https://x.com/mediavspolek" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    <a href="https://x.com/mediavspolek" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
                     </a>
-                    <a href="https://www.youtube.com/@MediaV-glm" target="_blank" rel="noopener noreferrer" class="hover:opacity-75 transition-opacity duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 58.38 58.38 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 58.38 58.38 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m9.75 15.02 5.75-3.02-5.75-3Z"/></svg>
+                    <a href="https://www.youtube.com/@MediaV-glm" target="_blank" rel="noopener noreferrer" class="hover:scale-110 transition-transform duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 2-2 58.38 58.38 0 0 1 15 0 2 2 0 0 1 2 2 24.12 24.12 0 0 1 0 10 2 2 0 0 1-2 2 58.38 58.38 0 0 1-15 0 2 2 0 0 1-2-2Z"/><path d="m9.75 15.02 5.75-3.02-5.75-3Z"/></svg>
                     </a>
                 </div>
             </div>
         </header>
 
-        <main class="pt-32 pb-24 px-6 md:px-12 max-w-screen-xl mx-auto">
-            <div class="text-center mb-20 scroll-reveal">
-                <h1 class="font-display text-4xl md:text-6xl text-primary-accent font-medium mb-4">O nás</h1>
-                <div class="w-12 h-[1px] bg-primary-accent mx-auto"></div>
-            </div>
+        <main>
+            <!-- Hero Section -->
+            <section class="relative w-full h-[50vh] min-h-[400px] overflow-hidden flex items-end pb-12">
+                <div class="absolute inset-0 z-0 bg-neutral">
+                    <img 
+                        class="w-full h-full object-cover opacity-60 contrast-[1.1] grayscale"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZNIOf8_fHaD6Y62pe7RrhOUVn9MWcMqgUhM81g1mFee4Bya-TOeW8RR8UCZdDr_L8PzBVVOm7w51cJv2KisKMajdkvxa9qAuRNWc6bigWSud8whbEg33FKgJETsQ_lzI_zmnccdshyWxz80kAOqp-PuMU-Ikx6u3Pe129Kj49Ts8OmKfA8CdE_1dQmCowNZ2lYnJ60unPltjAib53YHQ8VzRU0_iRvf6y_4cQ-WdmuWA9llH82vryWjXLt7UY0zyIrBOLDGwYI07p"
+                        alt="O nás pozadí"
+                        referrerpolicy="no-referrer"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-neutral via-neutral/30 to-transparent"></div>
+                </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-                <!-- Left Sidebar: Team -->
-                <div class="lg:col-span-4 space-y-24">
-                    <!-- Marek -->
-                    <div class="scroll-reveal">
-                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 border border-white/5 grayscale">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZNIOf8_fHaD6Y62pe7RrhOUVn9MWcMqgUhM81g1mFee4Bya-TOeW8RR8UCZdDr_L8PzBVVOm7w51cJv2KisKMajdkvxa9qAuRNWc6bigWSud8whbEg33FKgJETsQ_lzI_zmnccdshyWxz80kAOqp-PuMU-Ikx6u3Pe129Kj49Ts8OmKfA8CdE_1dQmCowNZ2lYnJ60unPltjAib53YHQ8VzRU0_iRvf6y_4cQ-WdmuWA9llH82vryWjXLt7UY0zyIrBOLDGwYI07p" 
-                                 class="w-full h-full object-cover grayscale" alt="Marek Vojtíšek">
+                <div class="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-12 w-full">
+                    <div class="max-w-5xl">
+                        <div class="flex items-center gap-6 mb-8">
+                            <div class="w-12 h-[1px] bg-primary/60"></div>
+                            <span class="micro-label !text-primary">
+                                02 / O NÁS
+                            </span>
                         </div>
-                        <p class="font-label italic text-[0.65rem] text-secondary-gray mb-4 text-center">Předseda výboru</p>
-                        <h3 class="font-display text-xl mb-4 text-primary-accent">Marek Vojtíšek</h3>
-                        <p class="font-body text-secondary-gray text-sm leading-relaxed">
+                        
+                        <h1 class="font-display font-medium text-4xl sm:text-5xl md:text-7xl leading-[0.98] tracking-tight text-white mb-0 drop-shadow-sm">
+                            Naše příběhy a vize
+                        </h1>
+                    </div>
+                </div>
+            </section>
+
+            <div class="py-24 px-6 md:px-12 max-w-screen-2xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                <!-- Left Sidebar: Team -->
+                <div class="lg:col-span-4 space-y-16">
+                    <!-- Marek -->
+                    <div class="scroll-reveal obsidian-card p-8">
+                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 rounded-lg grayscale">
+                            <img src="https://lh3.googleusercontent.com/pw/AP1GczOwg0tTA2yjRkqyLgGs47TgO5l4ly8GxF8Q9CL2Hu3D3oqCuMullDBdKnv0WvkeTYlqJw2HHnuBZFAxA_qmmHfbLtKGUvXfM-w9G73zXvHbXrCsh-M=w1920-h1080" 
+                                 class="w-full h-full object-contain grayscale" alt="Marek Vojtíšek">
+                        </div>
+                        <p class="micro-label mb-4 text-center !text-primary">Předseda výboru</p>
+                        <h3 class="font-display text-xl mb-4 text-primary">Marek Vojtíšek</h3>
+                        <p class="font-body text-on-surface/70 text-sm leading-relaxed">
                             předseda a kreativní lídr. Fotograf, stratég a mentor, který udává směr našim projektům a propojuje umění s komunitní vizí.
                         </p>
                     </div>
 
                     <!-- Vilém -->
-                    <div class="scroll-reveal">
-                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 border border-white/5 grayscale">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZNIOf8_fHaD6Y62pe7RrhOUVn9MWcMqgUhM81g1mFee4Bya-TOeW8RR8UCZdDr_L8PzBVVOm7w51cJv2KisKMajdkvxa9qAuRNWc6bigWSud8whbEg33FKgJETsQ_lzI_zmnccdshyWxz80kAOqp-PuMU-Ikx6u3Pe129Kj49Ts8OmKfA8CdE_1dQmCowNZ2lYnJ60unPltjAib53YHQ8VzRU0_iRvf6y_4cQ-WdmuWA9llH82vryWjXLt7UY0zyIrBOLDGwYI07p" 
-                                 class="w-full h-full object-cover grayscale" alt="Vilém Odložilík">
+                    <div class="scroll-reveal obsidian-card p-8">
+                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 rounded-lg grayscale">
+                            <img src="https://lh3.googleusercontent.com/pw/AP1GczOUuMWWp-el0DslCaprw9uU4Y_0h8ZT1lbU9Od7oB4rQErnZn_gcr29mfV0fMKuDxYVuK8SlIMzEzLRA9ru33nCl4bqe1gibn8W-WrhTm5H-YyQUiw=w1920-h1080" 
+                                 class="w-full h-full object-contain grayscale" alt="Vilém Odložilík">
                         </div>
-                        <p class="font-label italic text-[0.65rem] text-secondary-gray mb-4 text-center">1. místopředseda výboru</p>
-                        <h3 class="font-display text-xl mb-4 text-primary-accent">Vilém Odložilík</h3>
-                        <p class="font-body text-secondary-gray text-sm leading-relaxed">
+                        <p class="micro-label mb-4 text-center !text-primary">1. místopředseda výboru</p>
+                        <h3 class="font-display text-xl mb-4 text-primary">Vilém Odložilík</h3>
+                        <p class="font-body text-on-surface/70 text-sm leading-relaxed">
                             1. místopředseda, fotograf. Koordinátor kampaní, který zajišťuje hladký průběh spolupráce a technickou preciznost.
                         </p>
                     </div>
 
                     <!-- Blanka -->
-                    <div class="scroll-reveal">
-                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 border border-white/5 grayscale">
-                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZNIOf8_fHaD6Y62pe7RrhOUVn9MWcMqgUhM81g1mFee4Bya-TOeW8RR8UCZdDr_L8PzBVVOm7w51cJv2KisKMajdkvxa9qAuRNWc6bigWSud8whbEg33FKgJETsQ_lzI_zmnccdshyWxz80kAOqp-PuMU-Ikx6u3Pe129Kj49Ts8OmKfA8CdE_1dQmCowNZ2lYnJ60unPltjAib53YHQ8VzRU0_iRvf6y_4cQ-WdmuWA9llH82vryWjXLt7UY0zyIrBOLDGwYI07p" 
-                                 class="w-full h-full object-cover grayscale" alt="Blanka Špinarová">
+                    <div class="scroll-reveal obsidian-card p-8">
+                        <div class="bg-surface-container overflow-hidden aspect-[3/4] mb-6 rounded-lg grayscale">
+                            <img src="https://lh3.googleusercontent.com/pw/AP1GczOMzyse_TbYUL3EOpERcEH8sM0w5Zbop-nlvAHSbbPZXtaiI5dzYGjClJJedJbeEIycrmyzkreR1mKss0W_nKJEvvD-Uh7kl4-eEuGqct_gJooKlcE=w1920-h1080" 
+                                 class="w-full h-full object-contain grayscale" alt="Blanka Špinarová">
                         </div>
-                        <p class="font-label italic text-[0.65rem] text-secondary-gray mb-4 text-center">2. místopředseda výboru</p>
-                        <h3 class="font-display text-xl mb-4 text-primary-accent">Blanka Špinarová</h3>
-                        <p class="font-body text-secondary-gray text-sm leading-relaxed">
+                        <p class="micro-label mb-4 text-center !text-primary">2. místopředseda výboru</p>
+                        <h3 class="font-display text-xl mb-4 text-primary">Blanka Špinarová</h3>
+                        <p class="font-body text-on-surface/70 text-sm leading-relaxed">
                             2. místopředsedkyně. Komunikační opora týmu, která pečuje o vztahy s partnery, klienty i komunitou.
                         </p>
                     </div>
@@ -114,16 +138,16 @@
 
                 <!-- Right Content Area -->
                 <div class="lg:col-span-8 space-y-20">
-                    <section class="scroll-reveal">
-                        <h2 class="font-display text-2xl md:text-4xl text-on-surface mb-8">📸 O nás – Fotografie, která propojuje komunitu</h2>
-                        <p class="font-body text-secondary-gray text-lg leading-relaxed">
+                    <section class="scroll-reveal obsidian-card p-12">
+                        <h2 class="font-display text-2xl md:text-4xl text-on-surface mb-8">O nás – Fotografie, která propojuje komunitu</h2>
+                        <p class="font-body text-on-surface/70 text-lg leading-relaxed text-justify">
                             Media V není jen fotografická platforma. Jsme kolektiv lidí, kteří věří, že obraz má sílu spojovat, inspirovat a měnit svět kolem nás. Naše práce vzniká tam, kde se potkává kreativita s komunitou – na sportovních stadionech, v ulicích měst, v ateliérech i na veřejných akcích. Každý snímek, který vytvoříme, nese příběh lidí, týmů a hodnot, které sdílíme.
                         </p>
                     </section>
 
                     <section class="scroll-reveal">
                         <h2 class="font-display text-2xl md:text-3xl text-primary-accent mb-6">Naše mise</h2>
-                        <p class="font-body text-secondary-gray leading-relaxed italic">
+                        <p class="font-body text-secondary-gray leading-relaxed italic text-justify">
                             Věříme v sílu vizuálního vyprávění. Naše fotografie nejsou jen estetické – jsou nástrojem propojení. Pomáháme neziskovým projektům, sportovním klubům, modelingovým iniciativám i komunitním kampaním najít vizuální jazyk, který rezonuje. Vytváříme prostor, kde se profesionální přístup snoubí s lidskostí a empatií.
                         </p>
                     </section>
@@ -131,22 +155,22 @@
                     <section class="scroll-reveal">
                         <h2 class="font-display text-2xl mb-8">Co tvoříme</h2>
                         <ul class="space-y-4 text-secondary-gray">
-                            <li class="flex items-center gap-4"><span class="text-xs">📸</span> Sportovní a modelingové kampaně s důrazem na autenticitu</li>
-                            <li class="flex items-center gap-4"><span class="text-xs">🎓</span> Vzdělávací projekty pro mladé tvůrce a komunitní skupiny</li>
-                            <li class="flex items-center gap-4"><span class="text-xs">🤝</span> Vizualizace pro neziskové organizace a veřejné iniciativy</li>
-                            <li class="flex items-center gap-4"><span class="text-xs">🖼️</span> Umělecké série, které propojují člověka s přírodou, emocemi a prostředím</li>
+                            <li class="flex items-center gap-4">Sportovní a modelingové kampaně s důrazem na autenticitu</li>
+                            <li class="flex items-center gap-4">Vzdělávací projekty pro mladé tvůrce a komunitní skupiny</li>
+                            <li class="flex items-center gap-4">Vizualizace pro neziskové organizace a veřejné iniciativy</li>
+                            <li class="flex items-center gap-4">Umělecké série, které propojují člověka s přírodou, emocemi a prostředím</li>
                         </ul>
                     </section>
 
                     <section class="scroll-reveal">
                         <h2 class="font-display text-2xl mb-8">Proč to děláme</h2>
-                        <p class="font-body text-secondary-gray leading-relaxed">
+                        <p class="font-body text-secondary-gray leading-relaxed text-justify">
                             Protože věříme, že fotografie může být víc než jen obraz. Může být mostem mezi lidmi. Může vyprávět příběhy, které by jinak zůstaly neslyšené. Může inspirovat k akci, empatii a spolupráci.
                         </p>
                     </section>
 
-                    <section class="scroll-reveal bg-surface-container p-10 border border-white/5">
-                        <h2 class="font-display text-xl text-primary-accent mb-8">🎥 Co nabízíme</h2>
+                    <section class="scroll-reveal bg-surface-container p-10 border border-on-surface/5">
+                        <h2 class="font-display text-xl text-primary-accent mb-8">Co nabízíme</h2>
                         <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6 text-sm text-secondary-gray">
                             <li>• Foto workshopy</li>
                             <li>• Vzdělávací přednášky</li>
@@ -157,14 +181,14 @@
                     </section>
 
                     <section class="scroll-reveal">
-                        <h2 class="font-display text-2xl md:text-3xl text-primary-accent mb-8">🏒 Jsme tým fotografů, kteří žijí sportem</h2>
-                        <p class="font-body text-secondary-gray leading-relaxed mb-10">
+                        <h2 class="font-display text-2xl md:text-3xl text-primary-accent mb-8">Jsme tým fotografů, kteří žijí sportem</h2>
+                        <p class="font-body text-secondary-gray leading-relaxed mb-10 text-justify">
                             Každý zápas, každý gól, každý emotivní moment — to vše zachycujeme s vášní, precizností a citem pro detail. Jsme tým fotografů, kteří žijí hokejem i basketbalem. Naše objektivy míří na led extraligových týmů <strong>HC Oceláři Třinec</strong> a <strong>HC Vítkovice Ridera</strong>, prvoligového <strong>HC Frýdek-Místek</strong>, i na palubovku <strong>NH Ostrava</strong>, kde dokumentujeme nejen samotnou hru, ale i atmosféru, emoce a příběhy, které se odehrávají mimo mantinely.
                         </p>
 
                         <div class="space-y-12">
                             <div>
-                                <h3 class="font-label text-primary-accent text-xs tracking-widest mb-6">💡 CO NÁS ODLIŠUJE?</h3>
+                                <h3 class="font-label text-primary-accent text-xs tracking-widest mb-6">CO NÁS ODLIŠUJE?</h3>
                                 <ul class="space-y-4 text-secondary-gray text-sm">
                                     <li>• <strong>Dynamika a timing</strong> – víme, kdy stisknout spoušť, aby vznikl snímek, který mluví za vše.</li>
                                     <li>• <strong>Zkušenosti z extraligy a první ligy</strong> – známe prostředí, hráče i rytmus zápasů.</li>
@@ -174,7 +198,7 @@
                             </div>
 
                             <div>
-                                <h3 class="font-label text-primary-accent text-xs tracking-widest mb-6">📣 PRO KOHO FOTÍME?</h3>
+                                <h3 class="font-label text-primary-accent text-xs tracking-widest mb-6">PRO KOHO FOTÍME?</h3>
                                 <ul class="space-y-4 text-secondary-gray text-sm">
                                     <li>• Oficiální weby a sociální sítě <strong>Tophokeje</strong></li>
                                     <li>• Fanoušky, kteří chtějí vidět sport zblízka — tak, jak ho zažíváme my</li>
@@ -184,30 +208,31 @@
                     </section>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
         <!-- Footer -->
-        <footer class="bg-[#0D0D0D] text-[#F0EDE8] pt-32 pb-16">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-24 border-b border-white/5 pb-20 relative">
-                <div class="flex flex-col justify-between">
-                    <div class="font-display italic text-3xl font-light">MEDIA V SPOLEK</div>
-                </div>
+        <footer class="bg-surface-container text-on-surface pt-32 pb-16">
+                <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-24 border-b border-white/5 pb-20 relative">
+                    <div class="flex flex-col justify-between">
+                        <div class="font-display italic text-3xl font-light text-white">MEDIA V SPOLEK</div>
+                    </div>
 
-                <nav class="flex flex-col gap-6">
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">PRIVACY</a>
-                    <a href="#" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">TERMS</a>
-                    <a href="kontakt.html" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-white/40 hover:text-primary-accent transition-colors duration-300">KONTAKT</a>
-                    <a href="onas.html" class="font-label uppercase tracking-[0.2em] text-[0.65rem] text-primary-accent transition-all duration-300">O NÁS</a>
-                </nav>
+                    <nav class="flex flex-col gap-6">
+                        <a href="#" class="btn-secondary !bg-transparent !border !border-white/10 !text-white/60 hover:!text-white">PRIVACY</a>
+                        <a href="#" class="btn-secondary !bg-transparent !border !border-white/10 !text-white/60 hover:!text-white">TERMS</a>
+                        <a href="kontakt.html" class="btn-secondary !bg-transparent !border !border-white/10 !text-white/60 hover:!text-white">KONTAKT</a>
+                        <a href="onas.html" class="btn-secondary !text-white">O NÁS</a>
+                    </nav>
 
                 <div class="flex flex-col justify-end">
-                    <p class="font-label text-[0.6rem] text-white/20 tracking-widest leading-loose">
+                    <p class="font-label text-[0.6rem] text-on-surface/20 tracking-widest leading-loose">
                         © 2024 MEDIA V SPOLEK / DOCUMENTARY AND ART PHOTOGRAPHY UNIT<br>
                         OSTRAVA, CZECH REPUBLIC
                     </p>
                 </div>
 
-                <div class="absolute bottom-4 right-0 font-label font-bold tracking-tighter text-[#F0EDE8]/30 text-sm">
+                <div class="absolute bottom-4 right-0 font-label font-bold tracking-tighter text-on-surface/30 text-sm">
                     MEDIA V SPOLEK
                 </div>
             </div>
