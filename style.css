@@ -1,21 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Epilogue:ital,wght@0,100..900;1,100..900&family=Space+Grotesk:wght@300..700&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --color-surface: #0D0D0D;
-    --color-on-surface: #F0EDE8;
-    --color-primary-accent: #c9a25a;
-    --color-secondary-gray: #989898;
-    --color-surface-container: #1A1A1A;
+    /* Obsidian Reportage Color Palette */
+    --color-primary: #C9A25A;
+    --color-secondary: #F0EDE8;
+    --color-neutral: #2E2E2E; /* 18% Grey */
+    --color-tertiary: #989898;
 
-    --font-display: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+    /* Semantic Mapping */
+    --color-surface: var(--color-neutral);
+    --color-on-surface: #F5F5F5;
+    --color-primary-accent: var(--color-primary);
+    --color-secondary-gray: var(--color-tertiary);
+    --color-surface-container: #383838;
+
+    /* Typography */
+    --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
     --font-body: "Epilogue", ui-sans-serif, system-ui, sans-serif;
     --font-label: "Space Grotesk", ui-monospace, SFMono-Regular, monospace;
+
+    --font-size-hero: 3.5rem;
+
+    /* Radii */
+    --radius-xl: 1.5rem;
+    --radius-lg: 1rem;
+    --radius-md: 0.75rem;
 }
 
 @layer base {
     body {
         @apply bg-surface text-on-surface font-body selection:bg-primary-accent selection:text-white antialiased;
     }
+
+    h1, h2, h3, h4, h5, h6, .hero-title {
+        @apply font-display font-medium tracking-tight;
+    }
+
+    .micro-label {
+        @apply font-label uppercase text-[0.75rem] tracking-[0.15em] text-secondary-gray;
+    }
+}
+
+/* Card Style based on Obsidian Reportage */
+.obsidian-card {
+    @apply bg-surface rounded-xl border border-on-surface/5 shadow-sm overflow-hidden;
+    transition: transform 0.3s ease, shadow 0.3s ease;
+}
+
+/* Button Styles based on Obsidian Reportage */
+.btn-primary {
+    @apply bg-primary text-white font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:bg-primary/90 active:scale-95;
+}
+
+.btn-secondary {
+    @apply bg-surface-container text-neutral font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:bg-surface-container/80;
+}
+
+.btn-inverted {
+    @apply bg-neutral text-white font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:opacity-90;
+}
+
+.btn-outlined {
+    @apply border border-neutral/20 text-neutral font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:border-neutral;
 }
 
 .scroll-reveal {
@@ -36,5 +83,5 @@
 }
 
 .portfolio-image:hover {
-    @apply scale-105 grayscale-0;
+    @apply scale-105;
 }
