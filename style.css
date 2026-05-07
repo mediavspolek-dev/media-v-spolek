@@ -2,18 +2,18 @@
 @import "tailwindcss";
 
 @theme {
-    /* Obsidian Reportage Color Palette */
+    /* Obsidian Reportage Light Color Palette */
     --color-primary: #C9A25A;
-    --color-secondary: #F0EDE8;
-    --color-neutral: #2E2E2E; /* 18% Grey */
-    --color-tertiary: #989898;
+    --color-secondary: #F8F8F8;
+    --color-neutral: #FFFFFF;
+    --color-tertiary: #666666;
 
     /* Semantic Mapping */
     --color-surface: var(--color-neutral);
-    --color-on-surface: #F5F5F5;
+    --color-on-surface: #1A1A1A;
     --color-primary-accent: var(--color-primary);
     --color-secondary-gray: var(--color-tertiary);
-    --color-surface-container: #383838;
+    --color-surface-container: #F4F2EE;
 
     /* Typography */
     --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
@@ -54,15 +54,15 @@
 }
 
 .btn-secondary {
-    @apply bg-surface-container text-neutral font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:bg-surface-container/80;
+    @apply bg-surface-container text-on-surface font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:bg-surface-container/80;
 }
 
 .btn-inverted {
-    @apply bg-neutral text-white font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:opacity-90;
+    @apply bg-on-surface text-surface font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:opacity-90;
 }
 
 .btn-outlined {
-    @apply border border-neutral/20 text-neutral font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:border-neutral;
+    @apply border border-on-surface/10 text-on-surface font-label font-bold uppercase tracking-[0.1em] text-[0.75rem] py-4 px-8 rounded-md transition-all hover:border-on-surface;
 }
 
 .scroll-reveal {
