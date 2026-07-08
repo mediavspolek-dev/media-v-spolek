@@ -192,7 +192,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="px-6 md:px-12 max-w-screen-2xl mx-auto">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-16">
                         <div class="break-inside-avoid">
-                            <div class="relative group overflow-hidden bg-surface-container scroll-reveal aspect-[3/2] flex items-center justify-center">
+                            <div id="portrait-gallery-container" class="relative group overflow-hidden bg-surface-container scroll-reveal aspect-[3/2] flex items-center justify-center">
                                 <img 
                                     class="h-full w-auto max-w-full object-contain cursor-pointer portfolio-image filter grayscale mx-auto"
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1"
@@ -391,9 +391,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
-        // Slideshow Logic
-        document.querySelectorAll('[data-slideshow]').forEach(container => {
-            const images = JSON.parse(container.getAttribute('data-slideshow'));
+        // Reusable Slideshow Logic
+        function startSlideshow(container, images) {
             const img = container.querySelector('img');
             let currentIndex = 0;
             let isGrayscale = true;
@@ -433,13 +432,70 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 openLightbox(img.src);
             });
             img.style.cursor = 'zoom-in';
+        }
+
+        // Initialize static slideshows
+        document.querySelectorAll('[data-slideshow]').forEach(container => {
+            const images = JSON.parse(container.getAttribute('data-slideshow'));
+            startSlideshow(container, images);
         });
+
+        // Dynamic Portrait Gallery Loader from gallery.json
+        async function loadPortraitGallery() {
+            const container = document.getElementById('portrait-gallery-container');
+            if (!container) return;
+
+            const img = container.querySelector('img');
+            
+            // High quality fallback portraits in case local photos are missing in development
+            const fallbackImages = [
+                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80",
+                "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
+            ];
+
+            let portraitPhotos = [];
+
+            try {
+                const response = await fetch('/gallery.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                let rawPhotos = [];
+                if (Array.isArray(data)) {
+                    rawPhotos = data;
+                } else if (data && typeof data === 'object') {
+                    const possibleArray = Object.values(data).find(val => Array.isArray(val));
+                    if (possibleArray) rawPhotos = possibleArray;
+                }
+
+                portraitPhotos = rawPhotos.filter(p => typeof p === 'string' && p.includes('photos/portret/'));
+            } catch (error) {
+                console.warn('Could not load gallery.json or no portrait photos found, using fallback portraits:', error);
+            }
+
+            // Fallback if no photos found in gallery.json
+            if (portraitPhotos.length === 0) {
+                portraitPhotos = fallbackImages;
+            }
+
+            // Set the initial image
+            if (img && portraitPhotos.length > 0) {
+                img.src = portraitPhotos[0];
+            }
+
+            // Start the slideshow with dynamic photo set
+            startSlideshow(container, portraitPhotos);
+        }
 
         // Portfolio Single Images Lightbox
         document.querySelectorAll('.portfolio-image').forEach(img => {
             img.style.cursor = 'zoom-in';
             img.addEventListener('click', () => {
-                if (!img.closest('[data-slideshow]')) {
+                if (!img.closest('[data-slideshow]') && !img.closest('#portrait-gallery-container')) {
                     openLightbox(img.src);
                 }
             });
@@ -481,6 +537,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 });
             }
         }
+
+        // Initialize the portrait gallery slideshow dynamically
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPortraitGallery();
+        });
     </script>
 </body>
 </html>
