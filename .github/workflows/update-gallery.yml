@@ -8,10 +8,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # Tento řádek explicitně vynutí právo na zápis
+      contents: write # Klíčový řádek, který povolí zápis souboru gallery.json
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Aktualizováno na nejnovější verzi v4
+        uses: actions/checkout@v4
 
       - name: Generate JSON Matrix
         run: |
@@ -22,7 +22,7 @@ jobs:
 
       - name: Commit and Push changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Předání tokenu pro ověření identity bota
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "Gallery Bot"
           git config --global user.email "bot@github.com"
