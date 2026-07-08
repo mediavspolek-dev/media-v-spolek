@@ -458,7 +458,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             let portraitPhotos = [];
 
             try {
-                const response = await fetch('/gallery.json');
+                const response = await fetch('gallery.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -472,7 +472,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     if (possibleArray) rawPhotos = possibleArray;
                 }
 
-                portraitPhotos = rawPhotos.filter(p => typeof p === 'string' && p.includes('photos/portret/'));
+                // Filter for any paths containing "portret", "portrety", or "portrait" (case-insensitive)
+                portraitPhotos = rawPhotos.filter(p => 
+                    typeof p === 'string' && 
+                    (p.toLowerCase().includes('portret') || 
+                     p.toLowerCase().includes('portrait') || 
+                     p.toLowerCase().includes('portrety'))
+                );
+
+                // If no specific portrait keyword is found, but we have images, use them as fallback
+                if (portraitPhotos.length === 0) {
+                    portraitPhotos = rawPhotos.filter(p => typeof p === 'string' && /\.(jpg|jpeg|png|webp)$/i.test(p));
+                }
             } catch (error) {
                 console.warn('Could not load gallery.json or no portrait photos found, using fallback portraits:', error);
             }
