@@ -475,16 +475,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 // Filter specifically for any path containing the folder "photos/portret/" (case-insensitive)
                 // Regardless of what the actual photo file itself is named
+                // We normalize any backslashes (\) to forward slashes (/) to support Windows environment path formats
                 portraitPhotos = rawPhotos.filter(p => {
                     if (typeof p !== 'string') return false;
-                    const pathLower = p.toLowerCase();
-                    return pathLower.includes('photos/portret/') || pathLower.includes('media-v-spolek/photos/portret/');
+                    const normalizedPath = p.replace(/\\/g, '/').toLowerCase();
+                    return normalizedPath.includes('photos/portret/');
                 });
 
                 // Normalize image paths to be relative (e.g. strip "media-v-spolek/" prefix if present)
                 // This guarantees they will resolve correctly both locally and on GitHub Pages
                 portraitPhotos = portraitPhotos.map(p => {
-                    let cleaned = p;
+                    // Replace backslashes with forward slashes for browser compatibility
+                    let cleaned = p.replace(/\\/g, '/');
                     if (cleaned.startsWith('/')) {
                         cleaned = cleaned.substring(1);
                     }
