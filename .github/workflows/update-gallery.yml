@@ -1,0 +1,29 @@
+name: Generate Gallery JSON
+on:
+  push:
+    paths:
+      - 'photos/**' # Spustí se, kdykoliv přidáte/smažete fotku kdekoliv ve složce photos
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate JSON Matrix
+        run: |
+          echo "Generuji seznam souborů..."
+          # Najde všechny soubory ve složce photos, vynechá skryté a složky, a převede je do JSON formátu
+          find photos -type f ! -name ".*" | sort | awk 'BEGIN {print "["} {print "  \"" $0 "\","} END {print "]"}' > gallery.json
+          # Ošetření poslední čárky v JSONu, aby byl validní
+          sed -i '$x;s/,\n]$/\n]/;p;x' gallery.json
+          cat gallery.json
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "Gallery Bot"
+          git config --global user.email "bot@github.com"
+          git add gallery.json
+          # Commitne změny pouze v případě, že se JSON změnil
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automatická aktualizace galerií" && git push)
