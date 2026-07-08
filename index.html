@@ -447,12 +447,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             const img = container.querySelector('img');
             
-            // High quality fallback portraits in case local photos are missing in development
+            // Real project photos as the fallback in case local photos are missing in development
             const fallbackImages = [
-                "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1200&q=80",
-                "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80",
-                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=1200&q=80",
-                "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80"
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1",
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
             ];
 
             let portraitPhotos = [];
@@ -472,18 +470,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     if (possibleArray) rawPhotos = possibleArray;
                 }
 
-                // Filter for any paths containing "portret", "portrety", or "portrait" (case-insensitive)
-                portraitPhotos = rawPhotos.filter(p => 
-                    typeof p === 'string' && 
-                    (p.toLowerCase().includes('portret') || 
-                     p.toLowerCase().includes('portrait') || 
-                     p.toLowerCase().includes('portrety'))
-                );
+                // Filter specifically for any path containing the folder "photos/portret/" (case-insensitive)
+                // Regardless of what the actual photo file itself is named
+                portraitPhotos = rawPhotos.filter(p => {
+                    if (typeof p !== 'string') return false;
+                    const pathLower = p.toLowerCase();
+                    return pathLower.includes('photos/portret/') || pathLower.includes('media-v-spolek/photos/portret/');
+                });
 
-                // If no specific portrait keyword is found, but we have images, use them as fallback
-                if (portraitPhotos.length === 0) {
-                    portraitPhotos = rawPhotos.filter(p => typeof p === 'string' && /\.(jpg|jpeg|png|webp)$/i.test(p));
-                }
+                // Normalize image paths to be relative (e.g. strip "media-v-spolek/" prefix if present)
+                // This guarantees they will resolve correctly both locally and on GitHub Pages
+                portraitPhotos = portraitPhotos.map(p => {
+                    let cleaned = p;
+                    if (cleaned.startsWith('/')) {
+                        cleaned = cleaned.substring(1);
+                    }
+                    if (cleaned.startsWith('media-v-spolek/')) {
+                        cleaned = cleaned.substring('media-v-spolek/'.length);
+                    }
+                    return cleaned;
+                });
             } catch (error) {
                 console.warn('Could not load gallery.json or no portrait photos found, using fallback portraits:', error);
             }
