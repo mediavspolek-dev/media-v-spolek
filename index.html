@@ -397,11 +397,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             let currentIndex = 0;
             let isGrayscale = true;
 
+            const fallbackCDNImages = [
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuAeZugPszpScdJLHXyeZYiNLcZrWKIEdz6rVZfIiPqEyXrN0pOHZEt7bNwsbBipuVx6UvFNS60F41i8Kl3aGq5gqmcFNX5ZmpSA7UJ66jw2XgvWG5bEgZSArSLGGjBVpX2h2nlGgiS4-1FQeSg3TObndLxPrakIHoqgkKy_144l95f_dL8EQbrymtvyU9YFQZwAOcwx6NJmWlDIYoKYouKFZWBFJ1P9ARKwzd6_aVooh0azGx6GEz-csJFiv9Yd-S-LehYZAINldLj1",
+                "https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
+            ];
+
+            // Robust error handling to fall back to Google CDN if the file doesn't exist locally/dev
+            if (img) {
+                img.onerror = () => {
+                    const currentSrc = img.src;
+                    if (!currentSrc.startsWith('http') && !currentSrc.includes('unsplash.com')) {
+                        console.warn(`Failed to load: ${currentSrc}, switching to high quality CDN fallback`);
+                        img.src = fallbackCDNImages[currentIndex % fallbackCDNImages.length];
+                    }
+                };
+            }
+
             if (img && images.length > 1) {
-                // Preload images
+                // Preload images safely
                 images.forEach(src => {
                     const i = new Image();
-                    i.src = src;
+                    i.src = encodeURI(decodeURI(src));
                 });
 
                 setInterval(() => {
@@ -413,7 +429,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     img.style.opacity = '0';
                     
                     setTimeout(() => {
-                        img.src = images[currentIndex];
+                        img.src = encodeURI(decodeURI(images[currentIndex]));
                         img.onload = () => {
                             img.style.opacity = '1';
                             if (isGrayscale) {
@@ -447,7 +463,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             const img = container.querySelector('img');
             
-            // Real project photos as the fallback in case local photos are missing in development
+            // Fallback photo list if local files are missing in local dev or gallery.json is empty
             const fallbackImages = [
                 "photos/portret/1.jpg",
                 "photos/portret/2.jpg",
@@ -463,37 +479,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                const data = await response.json();
+                const rawText = await response.text();
                 
                 let rawPhotos = [];
-                if (Array.isArray(data)) {
-                    rawPhotos = data;
-                } else if (data && typeof data === 'object') {
-                    const possibleArray = Object.values(data).find(val => Array.isArray(val));
-                    if (possibleArray) rawPhotos = possibleArray;
+                try {
+                    // Try parsing as standard JSON
+                    const data = JSON.parse(rawText);
+                    if (Array.isArray(data)) {
+                        rawPhotos = data;
+                    } else if (data && typeof data === 'object') {
+                        const possibleArray = Object.values(data).find(val => Array.isArray(val));
+                        if (possibleArray) rawPhotos = possibleArray;
+                    }
+                } catch (jsonParseError) {
+                    console.warn('gallery.json is slightly malformed, falling back to resilient regex parsing:', jsonParseError);
+                    // Highly robust parser to extract all double-quoted strings from files that might contain formatting anomalies
+                    const matches = rawText.match(/"([^"]+)"/g);
+                    if (matches) {
+                        rawPhotos = matches.map(m => m.slice(1, -1)); // Remove the wrapping quotes
+                    }
                 }
 
                 // Filter specifically for any path containing the folder "photos/portret/" (case-insensitive)
-                // Regardless of what the actual photo file itself is named
-                // We normalize any backslashes (\) to forward slashes (/) to support Windows environment path formats
+                // Regardless of what the actual photo file itself is named (it can be anything!)
                 portraitPhotos = rawPhotos.filter(p => {
                     if (typeof p !== 'string') return false;
                     const normalizedPath = p.replace(/\\/g, '/').toLowerCase();
                     return normalizedPath.includes('photos/portret/');
                 });
 
-                // Normalize image paths to be relative (e.g. strip "media-v-spolek/" prefix if present)
-                // This guarantees they will resolve correctly both locally and on GitHub Pages
+                // Normalize image paths to be relative (e.g. strip any repository name prefix dynamically)
+                // And safely encode spaces and special characters for absolute browser compatibility
                 portraitPhotos = portraitPhotos.map(p => {
                     // Replace backslashes with forward slashes for browser compatibility
-                    let cleaned = p.replace(/\\/g, '/');
-                    if (cleaned.startsWith('/')) {
-                        cleaned = cleaned.substring(1);
+                    let normalized = p.replace(/\\/g, '/');
+                    const lowerNormalized = normalized.toLowerCase();
+                    const index = lowerNormalized.indexOf('photos/portret/');
+                    if (index !== -1) {
+                        normalized = normalized.substring(index);
                     }
-                    if (cleaned.startsWith('media-v-spolek/')) {
-                        cleaned = cleaned.substring('media-v-spolek/'.length);
-                    }
-                    return cleaned;
+                    return encodeURI(decodeURI(normalized));
                 });
             } catch (error) {
                 console.warn('Could not load gallery.json or no portrait photos found, using fallback portraits:', error);
@@ -504,9 +529,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 portraitPhotos = fallbackImages;
             }
 
-            // Set the initial image
+            // Set the initial image safely encoded
             if (img && portraitPhotos.length > 0) {
-                img.src = portraitPhotos[0];
+                img.src = encodeURI(decodeURI(portraitPhotos[0]));
             }
 
             // Start the slideshow with dynamic photo set
