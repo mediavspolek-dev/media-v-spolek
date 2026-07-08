@@ -391,6 +391,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
 
+        // Helper to get thumbnail url
+        function getThumbnailUrl(src) {
+            if (!src || src.startsWith('http') || src.startsWith('data:')) {
+                return src;
+            }
+            // Avoid proxy on development servers to prevent loading issues
+            const hostname = window.location.hostname;
+            if (hostname.includes('localhost') || hostname.includes('ais-dev-') || hostname.includes('127.0.0.1')) {
+                return src;
+            }
+            try {
+                // Resolve path relative to current document location
+                const absoluteUrl = new URL(src, window.location.href).href;
+                // Use images.weserv.nl to get a fast WebP resized image (width 800px)
+                return `https://images.weserv.nl/?url=${encodeURIComponent(absoluteUrl)}&w=800&q=80`;
+            } catch (e) {
+                return src;
+            }
+        }
+
+        // Helper to shuffle array (Fisher-Yates)
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
         // Reusable Slideshow Logic
         function startSlideshow(container, images) {
             const img = container.querySelector('img');
@@ -402,23 +432,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuDmsxzukdfRhwihZ94YHEa968bo8FDn-cu9vlUsnR1NM7_K6rVfMXGmUsedj-c94wXbQ0fdV1s2uMVwgCN1c_I435ekxGDtki3sqExOmbEa5_iL8lkiEmrhg1Ote0Xh3raq-tRjnZgxfls-o7NnppRDHxIpSbt3Rd_B78IJudLkYMH_srud-RZ_n0WrlrLnUNcWE76UDopu3QkgRLbe4nGIpB8ql5Za1DryTS6ygC2rou2SvDsf12K0detg80oaeV1L6KzBzJHPlXNT"
             ];
 
-            // Robust error handling to fall back to Google CDN if the file doesn't exist locally/dev
+            // Robust error handling to fall back to Google CDN or original if the proxy fails
             if (img) {
                 img.onerror = () => {
                     const currentSrc = img.src;
-                    if (!currentSrc.startsWith('http') && !currentSrc.includes('unsplash.com')) {
+                    if (currentSrc.includes('weserv.nl')) {
+                        console.warn("Weserv thumbnail proxy failed, falling back to original image");
+                        img.src = encodeURI(decodeURI(images[currentIndex]));
+                    } else if (!currentSrc.startsWith('http') && !currentSrc.includes('unsplash.com')) {
                         console.warn(`Failed to load: ${currentSrc}, switching to high quality CDN fallback`);
                         img.src = fallbackCDNImages[currentIndex % fallbackCDNImages.length];
                     }
                 };
             }
 
+            // Set initial image as a fast-loading thumbnail
+            if (img && images.length > 0) {
+                img.src = getThumbnailUrl(encodeURI(decodeURI(images[0])));
+            }
+
+            // Sequential/Lazy Preloader instead of eager bulk preloader
+            function preloadNextImage(index) {
+                if (images[index]) {
+                    const nextImg = new Image();
+                    nextImg.src = getThumbnailUrl(encodeURI(decodeURI(images[index])));
+                }
+            }
+
             if (img && images.length > 1) {
-                // Preload images safely
-                images.forEach(src => {
-                    const i = new Image();
-                    i.src = encodeURI(decodeURI(src));
-                });
+                // Preload the very next image's thumbnail initially
+                preloadNextImage(1);
 
                 setInterval(() => {
                     currentIndex = (currentIndex + 1) % images.length;
@@ -429,7 +472,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     img.style.opacity = '0';
                     
                     setTimeout(() => {
-                        img.src = encodeURI(decodeURI(images[currentIndex]));
+                        img.src = getThumbnailUrl(encodeURI(decodeURI(images[currentIndex])));
                         img.onload = () => {
                             img.style.opacity = '1';
                             if (isGrayscale) {
@@ -437,15 +480,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             } else {
                                 img.classList.remove('grayscale');
                             }
+                            // Preload the next image thumbnail after this one loads successfully
+                            preloadNextImage((currentIndex + 1) % images.length);
                         };
                     }, 1000); 
                 }, 6000);
             }
 
-            // Click for fullscreen
+            // Click for fullscreen - loads original FULL-RESOLUTION image in lightbox
             container.addEventListener('click', () => {
-                lightboxImg.setAttribute('data-origin-src', images[0]);
-                openLightbox(img.src);
+                openLightbox(encodeURI(decodeURI(images[currentIndex])));
             });
             img.style.cursor = 'zoom-in';
         }
@@ -529,10 +573,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 portraitPhotos = fallbackImages;
             }
 
-            // Set the initial image safely encoded
-            if (img && portraitPhotos.length > 0) {
-                img.src = encodeURI(decodeURI(portraitPhotos[0]));
-            }
+            // Shuffle the photos randomly
+            portraitPhotos = shuffleArray(portraitPhotos);
 
             // Start the slideshow with dynamic photo set
             startSlideshow(container, portraitPhotos);
